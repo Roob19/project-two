@@ -23,7 +23,7 @@ const reviewSchema = new Schema({
 });
 
 const brewerySchema = new Schema({
-    id: Number,
+    apiID: Number,
     name: String,
     brewery_type: String,
     street: String,
