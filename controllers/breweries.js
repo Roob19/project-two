@@ -2,6 +2,7 @@ const Brewery = require("../models/brewery");
 
 module.exports = {
   index,
+  show,
   new: newBrewery,
   create,
 };
@@ -10,6 +11,11 @@ function index(req, res) {
   Brewery.find({}, function (err, breweries) {
     res.render("pageView/index", { title: "All Breweries", breweries });
   });
+}
+
+function show ( req, res ) {
+    Brewery.findById(req.params.id)
+    
 }
 
 function newBrewery(req, res) {
