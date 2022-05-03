@@ -23,5 +23,21 @@ const reviewSchema = new Schema({
 });
 
 const brewerySchema = new Schema({
-    
-})
+    id: Number,
+    name: String,
+    brewery_type: String,
+    street: String,
+    city: String,
+    state: String,
+    postal_code: String,
+    country: String,
+    longitude: String,
+    latitude: String,
+    phone: String,
+    website_url: String,
+    reviews: [reviewSchema]
+}, {
+    timestamps: true
+});
+
+module.exports = mongoose.model('Brewery', brewerySchema);

@@ -11,6 +11,10 @@ const userSchema = new mongoose.Schema(
     email: String,
     avatar: String,
     locale: String,
+    favoites: {
+        type: Schema.Types.ObjectId,
+        ref: 'Brewery'
+    }
   },
   {
     timestamps: true,
