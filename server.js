@@ -23,6 +23,18 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(methodOverride('_method'));
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(function ( req, res, next ) {
+  res.locals.user = req.user;
+  next;
+});
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
