@@ -7,8 +7,8 @@ var session = require('express-session');
 var passport = require('passport');
 var methodOverride = require('method-override');
 require('dotenv').config();
-require('./conifg/database');
-require('./conifg/passport');
+require('./config/database');
+require('./config/passport');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
