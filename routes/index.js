@@ -1,7 +1,9 @@
 var express = require("express");
 var router = express.Router();
 const passport = require("passport");
-const fetch = require('node-fetch');
+const fetch = (...args) =>
+  import('node-fetch').then(({ default: fetch }) => fetch(...args));
+// const fetch = require('node-fetch');
 const rootURL = 'https://api.openbrewerydb.org/breweries/autocomplete?query=';
 const byCityURL = 'https://api.openbrewerydb.org/breweries?by_city=';
 const byPostalURL = 'https://api.openbrewerydb.org/breweries?by_postal=';
