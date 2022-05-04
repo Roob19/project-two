@@ -7,5 +7,41 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <form id="query-form" action="/" method="GET">
+      <p>At this time, only enter a search by zipcode: </p>
+      <div class "input-group">
+        <label>Brewery: </label>
+          <input type="text" name="breweryName" placeholder="Brewery Name"/>
+        <label>Street Address: </label>
+          <input type="text" name="street" placeholder="123 Main St"/>
+        <label>City: </label>
+          <input type="text" name="city" placeholder="City"/>
+        <label>State: </label>
+          <input type="text" name="state" placeholder="State"/>
+        <label>Zip: </label>
+          <input type="text" name="postal_code" placeholder="zipcode"/>
+        <label>Country: </label>
+          <input type="text" name="country" placeholder="country"/>
+        <label>Latitude, Longitude: </label>
+          <input type="text" name="lat-lon" placeholder="38.44174, -122.71156"/>
+        <label>Phone: </label>
+          <input type="text" name="phone" placeholder="5558675309"/>
+        <label>Website: </label>
+          <input type="text" name="website_url" placeholder="www.brewery.beer"/>
+        <span class="input-group-btn">
+          <button class="btn btn-success" type="submit">BEER</button>
+        </span>
+      </div>
+    </form>
+    <hr>
+  <div class="row col-xs-8 col-xs-offset-2">
+    <% if (breweryData) { %>
+      <%= JSON.(breweryData) %>
+    <% } else { %>
+      <h3 class="text-center text-info">
+        Enter a zip code or postal code.
+      </h3>
+    <% } %>
+  </div>
   </body>
 </html>
