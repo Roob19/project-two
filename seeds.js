@@ -1,5 +1,5 @@
 require('./config/database');
-const Movie = require('./models/brewery');
+const Brewery = require('./models/brewery');
 const User = require('./models/user');
 const data = require('./data');
 

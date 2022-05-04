@@ -1,5 +1,5 @@
 exports.breweries = [
-{
+  {
     id: 299,
     name: "Almanac Beer Company",
     brewery_type: "micro",
@@ -16,6 +16,6 @@ exports.breweries = [
     phone: "4159326531",
     website_url: "http://almanacbeer.com",
     updated_at: "2018-08-23T23:24:11.758Z",
-    created_at: "2018-08-23T23:24:11.758Z"
-  }
+    created_at: "2018-08-23T23:24:11.758Z",
+  },
 ];
