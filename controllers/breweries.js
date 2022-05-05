@@ -5,6 +5,7 @@ module.exports = {
   show,
   new: newBrewery,
   create,
+  breweryQuery,
 };
 
 function index(req, res) {
@@ -19,6 +20,7 @@ function show(req, res) {
 }
 
 function newBrewery(req, res) {
+    console.log(`newBrewery controller`, req.body);
   res.render("/new", { title: "Add Brewery" });
 }
 
@@ -30,4 +32,8 @@ function create(req, res) {
     }
     res.redirect(`/new/${brewery._id}`);
   });
+}
+
+function breweryQuery(req, res) {
+    console.log(`breweryQuery controller`, req.body);
 }

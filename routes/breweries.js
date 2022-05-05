@@ -6,6 +6,6 @@ const isLoggedIn = require('../config/auth');
 router.get('/', breweriesCtrl.index);
 router.post('/new', isLoggedIn, breweriesCtrl.new);
 router.get('/:id', breweriesCtrl.show);
-router.get('/', isloggedIn, breweriesCtrl.create);
+router.post('/', isLoggedIn, breweriesCtrl.create);
 
-modules.exports = router;
+module.exports = router;
