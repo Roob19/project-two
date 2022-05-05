@@ -12,14 +12,14 @@ router.get(
 router.get(
   "/oauth2callback",
   passport.authenticate("google", {
-    successRedirect: "/pageView",
-    failureRedirect: "/pageView",
+    successRedirect: "/",
+    failureRedirect: "/",
   })
 );
 
 router.get("/logout", function (req, res) {
   req.logout();
-  res.redirect("/pageView/home");
+  res.redirect("/");
 });
 
 module.exports = router;
