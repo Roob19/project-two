@@ -38,8 +38,9 @@ router.post("/search", function (req, res, next) {
   } else if (!!stateFind) {
     fetch(`${byStateURL}${stateFind}`)
       .then((res) => res.json())
-      .then((breweryData) => {});
-    return res.render("/show", { breweryData: null });
+      .then((breweryData) => {
+        res.render("/show", { title: breweryData.name, breweryData });
+      });
   } else if (!!latitude && !!longitude) {
     fetch(`${byLatLonURL}${latitude}, ${longitude}`)
       .then((res) => res.json())
