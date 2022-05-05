@@ -1,10 +1,11 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
+const passport = require('passport');
 
 /* GET home page. */
-router.get("/", function (req, res) {
+router.get("/", function (req, res, next) {
   console.log("/ PAGE");
-  res.redirect("/home", { title: "Brewery Finder" });
+  res.render("/index");
 });
 
 module.exports = router;

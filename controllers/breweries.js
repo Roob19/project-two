@@ -11,7 +11,9 @@ module.exports = {
 function index(req, res) {
   console.log("ALLL BREWERIES");
   Brewery.find({}, function (err, breweries) {
-    res.render("pageView/index", { title: "All Breweries", breweries });
+    console.log("CALLING INDEX");
+    // res.render("index", { title: "All Breweries", breweries });
+    res.send('HELLO WORLD');
   });
 }
 
