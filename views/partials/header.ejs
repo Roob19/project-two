@@ -19,9 +19,9 @@
     <p>Welcome to <%= title %></p>
     <nav>
       <img src="/public/images/beer-mug-14068286.jpeg" />
-      <a href="/pageView" <%- title === 'All Breweries' ? 'class="active"' : '' %>>ALL BREWERIES</a>
+      <a href="/pageView/index" <%- title === 'All Breweries' ? 'class="active"' : '' %>>ALL BREWERIES</a>
     <% if (user) { %>
-      <a href="/reviews/new"	<%- title === 'Add Review' ? 'class="active"' : '' %>>
+      <a href="/reviews/show"	<%- title === 'Add Review' ? 'class="active"' : '' %>>
       ADD NOTES</a>
       <a href="/breweries/new" <%- title === 'Add Brewery' ? 'class="active"' : '' %>>ADD BREWERY</a>
       <a href="/logout">LOG OUT</a>

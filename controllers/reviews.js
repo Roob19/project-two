@@ -27,7 +27,7 @@ function editReview(req, res) {
     req.body.locale = req.user.locale;
     review.reviews.push(req.body);
     review.save(function (err) {
-      res.redirect(`/pageView/${brewery._id}`);
+      res.redirect(`/pageView/${review._id}`);
     });
   });
 }

@@ -8,6 +8,7 @@ module.exports = {
 };
 
 function index(req, res) {
+    console.log('ALLL BREWERIES');
   Brewery.find({}, function (err, breweries) {
     res.render("pageView/index", { title: "All Breweries", breweries });
   });
@@ -15,7 +16,7 @@ function index(req, res) {
 
 function show ( req, res ) {
     Brewery.findById(req.params.id)
-    
+
 }
 
 function newBrewery(req, res) {

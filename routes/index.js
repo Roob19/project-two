@@ -1,9 +1,8 @@
 var express = require("express");
 var router = express.Router();
-const passport = require("passport");
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
-// const fetch = require('node-fetch');
+
 const rootURL = "https://api.openbrewerydb.org/breweries/autocomplete?query=";
 const byCityURL = "https://api.openbrewerydb.org/breweries?by_city=";
 const byPostalURL = "https://api.openbrewerydb.org/breweries?by_postal=";
@@ -11,28 +10,9 @@ const byStateURL = "https://api.openbrewerydb.org/breweries?by_state=";
 const byLatLonURL = "https://api.openbrewerydb.org/breweries?by_dist=";
 
 /* GET home page. */
-router.get("/", function (req, res, next) {
-  res.render("/pageView", { title: "Brewery Finder" });
-});
-
-router.get(
-  "/auth/google",
-  passport.authenticate("google", {
-    scope: ["profile", "name", "email", "locale"],
-  })
-);
-
-router.get(
-  "/oauth2callback",
-  passport.authenticate("google", {
-    successRedirect: "/pageView",
-    failureRedirect: "/pageView",
-  })
-);
-
-router.get("/logout", function (req, res) {
-  req.logout();
-  res.redirect("/pageView/home");
+router.get("/", function (req, res) {
+  console.log("HOME PAGE");
+  res.render("pageView/home", { title: "Brewery Finder" });
 });
 
 router.get("/", function (req, res, next) {
@@ -73,7 +53,7 @@ router.get("/", function (req, res, next) {
         res.render("index", { title: breweryData.name, breweryData });
       });
   } else {
-    return res.render("index", { title: 'unknown', breweryData: null });
+    return res.render("index", { title: "unknown", breweryData: null });
   }
 });
 
