@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>HOME PAGE</title>
+    </head>
+    <main>
+        <nav>
+            <img src="/public/images/beer-mug-14068286.jpeg" />
+            <a href="/pageView/index" <%- title === 'All Breweries' ? 'class="active"' : '' %>>ALL BREWERIES</a>
+          <% if (user) { %>
+            <a href="/reviews/show"	<%- title === 'Add Review' ? 'class="active"' : '' %>>ADD NOTES</a>
+            <a href="/breweries/new" <%- title === 'Add Brewery' ? 'class="active"' : '' %>>ADD BREWERY</a>
+            <a href="/logout">LOG OUT</a>
+          <% } else { %>
+            <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
+          <% } %>
+          </nav>
+        <body>
+            <h1>HOME PAGE</h1>
+        </body>
+    </main>
+</html>
