@@ -3,28 +3,28 @@ var router = express.Router();
 var passport = require("passport");
 
 /* GET home page. */
-console.log("here");
 router.get("/", (req, res) => {
-  console.log("calling index");
-  res.render("pageView/", { title: "Brew Finder" });
+  res.render("breweries/", { title: "Brew Finder" });
 });
 
 router.get(
   "/auth/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
+  passport.authenticate("google", { 
+      scope: ["profile", "email"] 
+    })
 );
 
 router.get(
   "/oauth2callback",
   passport.authenticate("google", {
     successRedirect: "/breweries",
-    failureRedirect: "/pageView",
+    failureRedirect: "/breweries",
   })
 );
 
 router.get("/logout", function (req, res) {
   req.logout();
-  res.redirect("/");
+  res.redirect("/breweries");
 });
 
 module.exports = router;

@@ -9,10 +9,10 @@ module.exports = {
 };
 
 function index(req, res) {
-  console.log("ALLL BREWERIES");
+//   console.log("ALLL BREWERIES");
   Brewery.find({}, function (err, breweries) {
-    console.log("CALLING INDEX");
-    res.render("pageView/allBreweries", { title: "All Breweries", breweries });
+    // console.log("CALLING INDEX");
+    res.render("breweries/allBreweries", { title: "All Breweries", breweries });
     // res.send('HELLO WORLD');
   });
 }
@@ -31,14 +31,18 @@ function show(req, res) {
 
 function newBrewery(req, res) {
     console.log(`newBrewery controller`, req.body);
-  res.render("pageView/new", { title: "Add Brewery" });
+  res.render("breweries/new", { title: "Add Brewery" });
 }
 
 function create(req, res) {
+    req.body.name = !!req.body.name;
+    for ( let key in req.body ) {
+        if (req.body[key] === '') delete req.body[key];
+    }
   const brewery = new Brewery(req.body);
   brewery.save(function (err) {
     if (err) {
-      return res.redirect("/pageView");
+      return res.redirect("/breweries/new");
     }
     res.redirect(`/new/${brewery._id}`);
   });
