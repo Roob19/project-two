@@ -12,7 +12,7 @@ function index(req, res) {
   console.log("ALLL BREWERIES");
   Brewery.find({}, function (err, breweries) {
     console.log("CALLING INDEX");
-    res.render("breweries/allBreweries", { title: "All Breweries", breweries });
+    res.render("pageView/allBreweries", { title: "All Breweries", breweries });
     // res.send('HELLO WORLD');
   });
 }
