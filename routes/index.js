@@ -3,8 +3,8 @@ var router = express.Router();
 var passport = require("passport");
 
 /* GET home page. */
-router.get("/", (req, res) => {
-  res.render("breweries/", { title: "Brew Finder" });
+router.get("/", (req, res, next) => {
+  res.render("/breweries", { title: "Brew Finder" });
 });
 
 router.get(
@@ -24,7 +24,7 @@ router.get(
 
 router.get("/logout", function (req, res) {
   req.logout();
-  res.redirect("/breweries");
+  res.redirect("/breweries", { title: "Brewfinder"});
 });
 
 module.exports = router;
