@@ -33,7 +33,7 @@ function editReview(req, res) {
       req.body,
       {new: true},
       function(err, review) {
-        if (err || !review) return res.redirect('/reviews');
+        if (err || !reviews) return res.redirect('/reviews');
         res.redirect(`/breweries/${book._id}`);
       }
     );

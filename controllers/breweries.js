@@ -62,4 +62,5 @@ function create(req, res) {
 
 function breweryQuery(req, res) {
   console.log(`breweryQuery controller`, req.body);
+  res.render("breweries/search", { title: 'Find Brewery'});
 }

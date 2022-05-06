@@ -20,6 +20,7 @@
         <nav>
         <img src="/public/images/beer-mug-14068286.jpeg" />
         <a href="/breweries" <%- title === 'All Breweries' ? 'class="active"' : '' %>>ALL BREWERIES</a>
+        <a href="breweries/search" <%- title === 'Find a Brewery' ? 'class="active"' : '' %>>FIND BREWERY</a>
         <% if (user) { %>
         <a href="breweries/new" <%- title === 'Add Brewery' ? 'class="active"' : '' %>>ADD BREWERY</a>
         <a href="/logout">LOG OUT</a>
