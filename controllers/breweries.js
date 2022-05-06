@@ -24,7 +24,7 @@ function show(req, res) {
       User.find({ _id: { $nin: brew.user } })
         .sort("name")
         .exec(function (err, users) {
-          res.render("breweries/show", {
+          res.render("breweries/showBreweries", {
             title: "Brewery Detail",
             brew,
             users,
@@ -47,7 +47,7 @@ function create(req, res) {
     if (err) {
       return res.redirect("/breweries/new");
     }
-    res.redirect(`breweries/showBrewery/${brewery._id}`);
+    res.redirect(`breweries/${brewery._id}`);
   });
 }
 
