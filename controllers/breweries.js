@@ -39,7 +39,6 @@ function newBrewery(req, res) {
 }
 
 function create(req, res) {
-  req.body.name = !!req.body.name;
   for (let key in req.body) {
     if (req.body[key] === "") delete req.body[key];
   }
