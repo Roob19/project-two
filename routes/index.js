@@ -6,7 +6,7 @@ var passport = require("passport");
 console.log("here");
 router.get("/", (req, res) => {
   console.log("calling index");
-  res.render("pageView/", { title: "TESTING TITLE" });
+  res.render("pageView/", { title: "Brew Finder" });
 });
 
 router.get(
