@@ -21,7 +21,7 @@
       <img src="/public/images/beer-mug-14068286.jpeg" />
       <a href="/breweries" <%- title === 'All Breweries' ? 'class="active"' : '' %>>ALL BREWERIES</a>
     <% if (user) { %>
-      <a href="/pageView/new" <%- title === 'Add Brewery' ? 'class="active"' : '' %>>ADD BREWERY</a>
+      <a href="/pageView/breweries/new" <%- title === 'Add Brewery' ? 'class="active"' : '' %>>ADD BREWERY</a>
       <a href="/logout">LOG OUT</a>
     <% } else { %>
       <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
