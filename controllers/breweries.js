@@ -12,7 +12,7 @@ function index(req, res) {
   console.log("ALLL BREWERIES");
   Brewery.find({}, function (err, breweries) {
     console.log("CALLING INDEX");
-    res.render("pageView/allBreweries", { title: "All Breweries", breweries });
+    res.render("/allBreweries/", { title: "All Breweries", breweries });
     // res.send('HELLO WORLD');
   });
 }
@@ -24,21 +24,21 @@ function show(req, res) {
       User
       .find({_id: {$nin: brew.user}})
       .sort('name').exec(function(err, users) {
-          res.render('breweries/show', { title: 'Brewery Detail', brew, users});
+          res.render('pageView/show', { title: 'Brewery Detail', brew, users});
       });
   });
 }
 
 function newBrewery(req, res) {
     console.log(`newBrewery controller`, req.body);
-  res.render("breweries/new", { title: "Add Brewery" });
+  res.render("pageView/new", { title: "Add Brewery" });
 }
 
 function create(req, res) {
   const brewery = new Brewery(req.body);
   brewery.save(function (err) {
     if (err) {
-      return res.redirect("/pageView/new");
+      return res.redirect("/pageView/");
     }
     res.redirect(`/new/${brewery._id}`);
   });

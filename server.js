@@ -44,7 +44,7 @@ app.use(function (req, res, next) {
 });
 
 app.use('/', indexRouter);
-app.use('/pageView', breweriesRouter);
+app.use('/breweries', breweriesRouter);
 app.use('/reviews', reviewsRouter);
 
 // catch 404 and forward to error handler
