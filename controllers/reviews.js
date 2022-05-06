@@ -2,8 +2,9 @@ const Brewery = require("../models/brewery");
 
 module.exports = {
   create,
-  update: editReview,
+  update: updateReview,
   delete: deleteReview,
+  edit: editReview
 };
 
 function create(req, res) {
@@ -20,17 +21,35 @@ function create(req, res) {
 }
 
 function editReview(req, res) {
-  Brewery.findByIdAndUpdate(req.params.id, function (err, review) {
-    req.body.user = req.user._id;
-    req.body.username = req.user.name;
-    req.body.userAvatar = req.user.avatar;
-    req.body.locale = req.user.locale;
-    review.reviews.push(req.body);
-    review.save(function (err) {
-      res.redirect(`/edit/${review._id}`);
+    Book.findOne({_id: req.params.id, userRecommending: req.user._id}, function(err, review) {
+      if (err || !book) return res.redirect('/reviews');
+      res.render('breweries/edit', {book});
     });
-  });
-}
+  }
+
+  function updateReview(req, res) {
+    Book.findOneAndUpdate(
+      {_id: req.params.id, userRecommending: req.user._id},
+      req.body,
+      {new: true},
+      function(err, reviews) {
+        if (err || !reviews) return res.redirect('/reviews');
+        res.redirect(`/reviews/${book._id}`);
+      }
+    );
+  }
+// function editReview(req, res) {
+//   Brewery.findByIdAndUpdate(req.params.id, function (err, review) {
+//     req.body.user = req.user._id;
+//     req.body.username = req.user.name;
+//     req.body.userAvatar = req.user.avatar;
+//     req.body.locale = req.user.locale;
+//     review.reviews.push(req.body);
+//     review.save(function (err) {
+//       res.redirect(`/edit/${review._id}`);
+//     });
+//   });
+// }
 
 function deleteReview(req, res, next) {
   Brewery.findOne({ "reviews._id": req.params.id }).then(function (brewery) {
