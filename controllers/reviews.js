@@ -22,8 +22,8 @@ function create(req, res) {
 
 function editReview(req, res) {
     Book.findOne({_id: req.params.id, userRecommending: req.user._id}, function(err, review) {
-      if (err || !book) return res.redirect('/reviews');
-      res.render('breweries/edit', {book});
+      if (err || !review) return res.redirect('/reviews');
+      res.render('breweries/edit', {review});
     });
   }
 
@@ -32,9 +32,9 @@ function editReview(req, res) {
       {_id: req.params.id, userRecommending: req.user._id},
       req.body,
       {new: true},
-      function(err, reviews) {
-        if (err || !reviews) return res.redirect('/reviews');
-        res.redirect(`/reviews/${book._id}`);
+      function(err, review) {
+        if (err || !review) return res.redirect('/reviews');
+        res.redirect(`/breweries/${book._id}`);
       }
     );
   }
