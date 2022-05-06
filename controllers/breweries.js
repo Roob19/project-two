@@ -9,7 +9,7 @@ module.exports = {
 };
 
 function index(req, res) {
-//   console.log("ALLL BREWERIES");
+  //   console.log("ALLL BREWERIES");
   Brewery.find({}, function (err, breweries) {
     // console.log("CALLING INDEX");
     res.render("breweries/allBreweries", { title: "All Breweries", breweries });
@@ -19,35 +19,39 @@ function index(req, res) {
 
 function show(req, res) {
   Brewery.findById(req.params.id)
-  .populate('user')
-  .exec(function(err, brew) {
-      User
-      .find({_id: {$nin: brew.user}})
-      .sort('name').exec(function(err, users) {
-          res.render('breweries/show', { title: 'Brewery Detail', brew, users});
-      });
-  });
+    .populate("user")
+    .exec(function (err, brew) {
+      User.find({ _id: { $nin: brew.user } })
+        .sort("name")
+        .exec(function (err, users) {
+          res.render("breweries/show", {
+            title: "Brewery Detail",
+            brew,
+            users,
+          });
+        });
+    });
 }
 
 function newBrewery(req, res) {
-    console.log(`newBrewery controller`, req.body);
+  console.log(`newBrewery controller`, req.body);
   res.render("breweries/new", { title: "Add Brewery" });
 }
 
 function create(req, res) {
-    req.body.name = !!req.body.name;
-    for ( let key in req.body ) {
-        if (req.body[key] === '') delete req.body[key];
-    }
+  req.body.name = !!req.body.name;
+  for (let key in req.body) {
+    if (req.body[key] === "") delete req.body[key];
+  }
   const brewery = new Brewery(req.body);
   brewery.save(function (err) {
     if (err) {
       return res.redirect("/breweries/new");
     }
-    res.redirect(`/new/${brewery._id}`);
+    res.redirect(`/breweries/${brewery._id}`);
   });
 }
 
 function breweryQuery(req, res) {
-    console.log(`breweryQuery controller`, req.body);
+  console.log(`breweryQuery controller`, req.body);
 }
