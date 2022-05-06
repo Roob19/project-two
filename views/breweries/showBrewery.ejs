@@ -68,7 +68,7 @@
               <form action="/reviews/<%= r._id %>?_method=DELETE" method="POST">
                 <button type="submit">remove</button>
               </form>
-              <form action="/breweries/<%= r._id %>?_method=UPDATE" method="PUT">
+              <form action="/edit/<%= r._id %>?_method=PUT" method="POST">
                 <button type="submit">edit</button>
               </form>
             <% } %>

@@ -1,0 +1,88 @@
+<%- include('../partials/header') %>
+<form id="new-form" action="/breweries" method="POST">
+    <div class "input-group">
+  <label>Brewery: </label>
+    <input type="text" name="name" placeholder="Brewery Name"/>
+  <label>Type of Brewery: </label>
+    <input type="text" name="brewery_type" placeholder="Brewery Type"/>
+  <label>Street Address: </label>
+    <input type="text" name="street" placeholder="123 Main St"/>
+  <label>City: </label>
+    <input type="text" name="city" placeholder="City"/>
+  <label>State: </label>
+    <input type="text" name="state" placeholder="State"/>
+  <label>Zip: </label>
+    <input type="text" name="postal_code" placeholder="zipcode"/>
+  <label>Country: </label>
+    <input type="text" name="country" placeholder="country"/>
+  <label>Latitude: </label>
+    <input type="text" name="latitude" placeholder="38.44174"/>
+  <label>Longitude: </label>
+    <input type="text" name="longitude" placeholder="-122.71156"/>
+  <label>Phone: </label>
+    <input type="text" name="phone" placeholder="5558675309"/>
+  <label>Website: </label>
+    <input type="text" name="website_url" placeholder="www.brewery.beer"/>
+    <br><br>
+    <button class="btn btn-success" type="submit">BEER</button>
+    </div>
+</form>
+<% if (user) { %>
+    <h2>Reviews</h2>
+  <form id="add-review-form" method="POST" action="/breweries/<%= brewery._id %>/reviews">
+    <label>Review:</label>
+    <textarea name="content"></textarea>
+    <label>Rating:</label>
+    <select name="rating">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    <input type="submit" value="Add Review">
+  </form>
+  <% } %>
+  
+  <% if (brewery.reviews.length) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Date</th>
+          <th>Review</th>
+          <th>Rating</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% let total = 0 %>
+        <% brewery.reviews.forEach(function(r) { %>
+          <% total += r.rating %>
+          <tr>
+            <td class="review-user"><img src="<%= r.userAvatar %>"><%= r.userName %></td>
+            <td><%= r.createdAt.toLocaleDateString() %></td>
+            <td><%= r.content %></td>
+            <td><%= r.rating %></td>
+            <td>
+              <% if (user && user._id.equals(r.user)) { %>
+                <form action="/reviews/<%= r._id %>?_method=DELETE" method="POST">
+                  <button type="submit">remove</button>
+                </form>
+                <form action="/edit/<%= r._id %>?_method=PUT" method="POST">
+                  <button type="submit">edit</button>
+                </form>
+              <% } %>
+            </td>
+          </tr>
+        <% }); %>
+        <tr>
+          <td colspan="3"></td>
+          <td><strong><%= (total / brewery.reviews.length).toFixed(1) %></strong></td>
+        </tr>
+      </tbody>
+    </table>
+  <% } else { %>
+    <h5>No Reviews Yet</h5>
+  <% } %>
+<%- include('../partials/footer') %>
