@@ -9,7 +9,7 @@ const byPostalURL = "https://api.openbrewerydb.org/breweries?by_postal=";
 const byStateURL = "https://api.openbrewerydb.org/breweries?by_state=";
 const byLatLonURL = "https://api.openbrewerydb.org/breweries?by_dist=";
 
-router.post("/search", function (req, res, next) {
+router.post("breweries/search", function (req, res, next) {
   const autoFill = req.body.name;
   const city = req.body.city;
   const postal_code = req.query.postal_code;
@@ -21,31 +21,31 @@ router.post("/search", function (req, res, next) {
     fetch(`${rootURL}${autoFill}`)
       .then((res) => res.json())
       .then((breweryData) => {
-        res.render("/showBrewery", { title: breweryData.name, breweryData });
+        res.render("breweries/showBrewery", { title: breweryData.name, breweryData });
       });
   } else if (!!city) {
     fetch(`${byCityURL}${city}`)
       .then((res) => res.json())
       .then((breweryData) => {
-        res.render("/showBrewery", { title: breweryData.name, breweryData });
+        res.render("breweries/showBrewery", { title: breweryData.name, breweryData });
       });
   } else if (!!postal_code) {
     fetch(`${byPostalURL}${postal_code}`)
       .then((res) => res.json())
       .then((breweryData) => {
-        res.render("/showBrewery", { title: breweryData.name, breweryData });
+        res.render("breweries/showBrewery", { title: breweryData.name, breweryData });
       });
   } else if (!!stateFind) {
     fetch(`${byStateURL}${stateFind}`)
       .then((res) => res.json())
       .then((breweryData) => {
-        res.render("/showBrewery", { title: breweryData.name, breweryData });
+        res.render("breweries/showBrewery", { title: breweryData.name, breweryData });
       });
   } else if (!!latitude && !!longitude) {
     fetch(`${byLatLonURL}${latitude}, ${longitude}`)
       .then((res) => res.json())
       .then((breweryData) => {
-        res.render("/showBrewery", { title: breweryData.name, breweryData });
+        res.render("breweries/showBrewery", { title: breweryData.name, breweryData });
       });
   } else {
     return res.render("/breweries", { title: "unknown", breweryData: null });
