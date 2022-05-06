@@ -9,7 +9,7 @@ const byPostalURL = "https://api.openbrewerydb.org/breweries?by_postal=";
 const byStateURL = "https://api.openbrewerydb.org/breweries?by_state=";
 const byLatLonURL = "https://api.openbrewerydb.org/breweries?by_dist=";
 
-router.get("breweries/search", function (req, res, next) {
+router.post("breweries/search", function (req, res, next) {
   const autoFill = req.body.name;
   const city = req.body.city;
   const postal_code = req.query.postal_code;
