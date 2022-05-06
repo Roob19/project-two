@@ -48,7 +48,7 @@ function create(req, res) {
     if (err) {
       return res.redirect("/breweries/new");
     }
-    res.redirect(`/allBreweries/${brewery._id}`);
+    res.redirect(`breweries/showBrewery/${brewery._id}`);
   });
 }
 
