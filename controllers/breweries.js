@@ -24,7 +24,7 @@ function show(req, res) {
       User
       .find({_id: {$nin: brew.user}})
       .sort('name').exec(function(err, users) {
-          res.render('pageView/show', { title: 'Brewery Detail', brew, users});
+          res.render('breweries/show', { title: 'Brewery Detail', brew, users});
       });
   });
 }
@@ -38,7 +38,7 @@ function create(req, res) {
   const brewery = new Brewery(req.body);
   brewery.save(function (err) {
     if (err) {
-      return res.redirect("/pageView/");
+      return res.redirect("/pageView");
     }
     res.redirect(`/new/${brewery._id}`);
   });
