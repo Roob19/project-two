@@ -4,8 +4,8 @@ const breweriesCtrl = require('../controllers/breweries');
 const isLoggedIn = require('../config/auth');
 
 router.get('/', breweriesCtrl.index);
-router.get('/new', breweriesCtrl.new); // isLoggedIn,
+router.get('/new', isLoggedIn, breweriesCtrl.new);
 router.get('/:id', breweriesCtrl.show);
-router.post('/', breweriesCtrl.create); // isLoggedIn,
+router.post('/', isLoggedIn, breweriesCtrl.create);
 
 module.exports = router;

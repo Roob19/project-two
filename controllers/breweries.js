@@ -18,12 +18,20 @@ function index(req, res) {
 }
 
 function show(req, res) {
-  Brewery.findById(req.params.id);
+  Brewery.findById(req.params.id)
+  .populate('user')
+  .exec(function(err, brew) {
+      User
+      .find({_id: {$nin: brew.user}})
+      .sort('name').exec(function(err, users) {
+          res.render('breweries/show', { title: 'Brewery Detail', brew, users});
+      });
+  });
 }
 
 function newBrewery(req, res) {
     console.log(`newBrewery controller`, req.body);
-  res.render("/new", { title: "Add Brewery" });
+  res.render("breweries/new", { title: "Add Brewery" });
 }
 
 function create(req, res) {
