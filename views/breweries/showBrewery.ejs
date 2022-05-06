@@ -65,7 +65,7 @@
           <td><%= r.rating %></td>
           <td>
             <% if (user && user._id.equals(r.user)) { %>
-              <form action="/reviews/<%= r._id %>?_method=DELETE" method="PUT">
+              <form action="/reviews/<%= r._id %>?_method=DELETE" method="POST">
                 <button type="submit">X</button>
               </form>
             <% } %>
