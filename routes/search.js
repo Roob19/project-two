@@ -17,31 +17,31 @@ router.post("breweries/search", function (req, res, next) {
   const longitude = req.body.longitude;
   const stateFind = req.body.state;
 
-  if (!!autoFill) {
+  if (autoFill === !"") {
     fetch(`${rootURL}${autoFill}`)
       .then((res) => res.json())
       .then((breweryData) => {
         res.render("breweries/showBrewery", { title: breweryData.name, breweryData });
       });
-  } else if (!!city) {
+  } else if (city === !"") {
     fetch(`${byCityURL}${city}`)
       .then((res) => res.json())
       .then((breweryData) => {
         res.render("breweries/showBrewery", { title: breweryData.name, breweryData });
       });
-  } else if (!!postal_code) {
+  } else if (postal_code === !"") {
     fetch(`${byPostalURL}${postal_code}`)
       .then((res) => res.json())
       .then((breweryData) => {
         res.render("breweries/showBrewery", { title: breweryData.name, breweryData });
       });
-  } else if (!!stateFind) {
+  } else if (stateFind === !"") {
     fetch(`${byStateURL}${stateFind}`)
       .then((res) => res.json())
       .then((breweryData) => {
         res.render("breweries/showBrewery", { title: breweryData.name, breweryData });
       });
-  } else if (!!latitude && !!longitude) {
+  } else if (latitude === !"" && longitude === !"") {
     fetch(`${byLatLonURL}${latitude}, ${longitude}`)
       .then((res) => res.json())
       .then((breweryData) => {
