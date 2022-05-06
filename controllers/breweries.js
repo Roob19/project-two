@@ -34,10 +34,10 @@ function index(req, res) {
 // }
 
 function show(req, res) {
-  Brewery.findById(req.params.id, function (err, brew) {
+  Brewery.findById(req.params.id, function (err, brewery) {
     res.render("breweries/showBreweries", {
       title: "Brewery Detail",
-      brew,
+      brewery
     });
   });
 }
