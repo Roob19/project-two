@@ -4,7 +4,7 @@ var passport = require("passport");
 
 /* GET home page. */
 router.get("/", (req, res, next) => {
-  res.render("breweries/", { title: "Brew Finder" });
+  res.redirect("/breweries", { title: "Brew Finder" });
 });
 
 router.get(
