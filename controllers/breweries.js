@@ -17,20 +17,29 @@ function index(req, res) {
   });
 }
 
+// function show(req, res) {
+//   Brewery.findById(req.params.id)
+//     .populate("user")
+//     .exec(function (err, brew) {
+//       User.find({ _id: { $nin: brew.user } })
+//         .sort("name")
+//         .exec(function (err, users) {
+//           res.render("breweries/showBreweries", {
+//             title: "Brewery Detail",
+//             brew,
+//             users,
+//           });
+//         });
+//     });
+// }
+
 function show(req, res) {
-  Brewery.findById(req.params.id)
-    .populate("user")
-    .exec(function (err, brew) {
-      User.find({ _id: { $nin: brew.user } })
-        .sort("name")
-        .exec(function (err, users) {
-          res.render("breweries/showBreweries", {
-            title: "Brewery Detail",
-            brew,
-            users,
-          });
-        });
+  Brewery.findById(req.params.id, function (err, brew) {
+    res.render("breweries/showBreweries", {
+      title: "Brewery Detail",
+      brew,
     });
+  });
 }
 
 function newBrewery(req, res) {
