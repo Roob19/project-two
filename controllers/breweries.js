@@ -35,7 +35,7 @@ function index(req, res) {
 
 function show(req, res) {
   Brewery.findById(req.params.id, function (err, brewery) {
-    res.render("breweries/showBreweries", {
+    res.render("breweries/showBrewery", {
       title: "Brewery Detail",
       brewery
     });
