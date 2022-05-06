@@ -14,7 +14,7 @@ function create(req, res) {
     req.body.locale = req.user.locale;
     brewery.reviews.push(req.body);
     brewery.save(function (err) {
-      res.redirect(`/pageView/${brewery._id}`);
+      res.redirect(`/breweries/${brewery._id}`);
     });
   });
 }
@@ -27,7 +27,7 @@ function editReview(req, res) {
     req.body.locale = req.user.locale;
     review.reviews.push(req.body);
     review.save(function (err) {
-      res.redirect(`/pageView/${review._id}`);
+      res.redirect(`/breweries/${review._id}`);
     });
   });
 }
@@ -36,13 +36,13 @@ function deleteReview(req, res, next) {
   Brewery.findOne({ "reviews._id": req.params.id }).then(function (brewery) {
     const review = brewery.reviews.id(req.params.id);
     if (!review.user.equals(req.user._id)) {
-      return res.redirect(`/pageView/${brewery._id}`);
+      return res.redirect(`/breweries/${brewery._id}`);
     }
     review.remove();
     brewery
       .save()
       .then(function () {
-        res.redirect(`/pageView/${brewery._id}`);
+        res.redirect(`/breweries/${brewery._id}`);
       })
       .catch(function (err) {
         return next(err);
